@@ -12,8 +12,12 @@ var scaleCmd = &cobra.Command{
 	Use:   "scale",
 	Short: "Scales the number of pods in the deployment",
 	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("scale called :: ")
-		handlers.ScaleDeployment(cmd)
+		err := handlers.ScaleDeployment(cmd)
+		if err != nil {
+			panic(err)
+		}
+
+		fmt.Println("Successfully scaled")
 	},
 }
 
